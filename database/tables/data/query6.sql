@@ -1,1 +1,1 @@
-DELETE FROM public.tabla_demo1 WHERE nombre = ('diana', 'Rodrigo');
+DELETE FROM public.tabla_demo1 WHERE nombre in ('diana', 'Rodrigo');
