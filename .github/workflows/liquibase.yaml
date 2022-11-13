@@ -1,0 +1,59 @@
+name: liquibase
+on:
+  pull_request:
+    paths:
+      - '/database/**'
+  workflow_dispatch:
+    inputs:
+      body:
+        required: true
+      pr_number:
+        required: true
+      ref:
+        required: true
+      sha:
+        required: true
+        
+      
+env:
+  LIQUIBASE_DB_USER: postgres
+  LIQUIBASE_DB_STAGE_PASS: postgres
+  LIQUIBASE_DB_STAGE_URL: liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+  
+  
+jobs: 
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:   
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+             ref: ${{ github.head_ref }}
+  
+      - name: Deployment database structure changes 
+        run: echo " Installing Liquibase"
+      - uses: liquibase/liquibase-github-action@v2
+        with:
+          operation: 'update'
+          classpath: '/database/postgresql-42.2.8.jar'
+          changeLogFile: '/database/db-master-structure.xml'
+          username: postgres
+          password: postgres
+          url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres
+        
+        
+      - name: Deployment database data changes
+        run: echo " Installing Liquibase"    
+
+      - uses: liquibase/liquibase-github-action@v2
+        with:
+          operation: 'update'
+          classpath: '/database/postgresql-42.2.8.jar'
+          changeLogFile: '/database/db-master-data.xml'
+          username: postgres
+          password: postgres
+          url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres
+          
