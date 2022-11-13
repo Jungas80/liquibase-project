@@ -10,6 +10,6 @@
 
  <!--CREATES-->
 
-  <include  file="database/tables/creates/TABLA_DEMO1.sql"/>
+  <includeAll  path="database/tables/creates/"/>
 
 </databaseChangeLog> 
