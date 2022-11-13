@@ -2,7 +2,7 @@ name: liquibase
 on:
   pull_request:
     paths:
-      - '/database/**'
+      - 'database/**'
   workflow_dispatch:
     inputs:
       body:
@@ -38,8 +38,8 @@ jobs:
       - uses: liquibase/liquibase-github-action@v2
         with:
           operation: 'update'
-          classpath: '/database/postgresql-42.2.8.jar'
-          changeLogFile: '/database/db-master-structure.xml'
+          classpath: 'database/postgresql-42.2.8.jar'
+          changeLogFile: 'database/db-master-structure.xml'
           username: postgres
           password: postgres
           url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres
@@ -51,8 +51,8 @@ jobs:
       - uses: liquibase/liquibase-github-action@v2
         with:
           operation: 'update'
-          classpath: '/database/postgresql-42.2.8.jar'
-          changeLogFile: '/database/db-master-data.xml'
+          classpath: 'database/postgresql-42.2.8.jar'
+          changeLogFile: 'database/db-master-data.xml'
           username: postgres
           password: postgres
           url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres
