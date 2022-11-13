@@ -11,7 +11,7 @@
 
  <!--DATA-->
  
-  <include  file="database/tables/data/**"/>
+  <includeAll  file="database/tables/data/"/>
 
 
 </databaseChangeLog> 
