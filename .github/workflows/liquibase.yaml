@@ -35,7 +35,7 @@ jobs:
   
       - name: Deployment database structure changes 
         run: echo " Installing Liquibase"
-      - uses: liquibase/liquibase-github-action@v2
+      - uses: liquibase/liquibase-github-action@v7
         with:
           operation: 'update'
           classpath: 'database/postgresql-42.2.8.jar'
@@ -48,7 +48,7 @@ jobs:
       - name: Deployment database data changes
         run: echo " Installing Liquibase"    
 
-      - uses: liquibase/liquibase-github-action@v2
+      - uses: liquibase/liquibase-github-action@v7
         with:
           operation: 'update'
           classpath: 'database/postgresql-42.2.8.jar'
