@@ -1,0 +1,1 @@
+SELECT * FROM public.tabla_demo1;
