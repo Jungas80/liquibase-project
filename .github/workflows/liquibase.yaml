@@ -50,10 +50,22 @@ jobs:
 
       - uses: liquibase/liquibase-github-action@v7
         with:
-          operation: 'update'
+          operation: 'updateSQL'
           classpath: 'database/postgresql-42.2.8.jar'
           changeLogFile: 'database/db-master-data.xml'
           username: postgres
           password: postgres
           url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres
+
+      - name: Deployment database data changes
+        run: echo " Installing Liquibase"    
+
+      - uses: liquibase/liquibase-github-action@v7
+        with:
+          operation: 'update'
+          classpath: 'database/postgresql-42.2.8.jar'
+          changeLogFile: 'database/db-master-data.xml'
+          username: postgres
+          password: postgres
+          url: jdbc:postgresql://liquibase.cb6fcuuxcjiy.us-east-1.rds.amazonaws.com:5432/postgres   
           
