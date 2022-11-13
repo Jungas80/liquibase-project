@@ -2,7 +2,7 @@ name: liquibase
 on:
   pull_request:
     paths:
-      - '/database/**'
+      - 'database/**'
   workflow_dispatch:
     inputs:
       body:
