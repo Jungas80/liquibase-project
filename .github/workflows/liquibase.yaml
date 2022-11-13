@@ -35,7 +35,7 @@ jobs:
   
       - name: Deployment database structure changes 
         run: echo " Installing Liquibase"
-      - uses: docker:///liquibase/liquibase:latest
+      - uses: liquibase/liquibase-github-action@v2
         with:
           operation: 'update'
           classpath: 'database/postgresql-42.2.8.jar'
