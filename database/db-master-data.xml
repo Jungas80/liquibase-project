@@ -11,7 +11,7 @@
 
  <!--DATA-->
  
-  <include  file="database/tables/data/query1.sql"/>
+  <include  file="database/tables/data/**"/>
 
 
 </databaseChangeLog> 
